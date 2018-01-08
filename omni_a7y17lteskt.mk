@@ -16,8 +16,11 @@
 
 LOCAL_PATH := device/samsung/a7y17lteskt
 
-# Common Overlays
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+# Inherit from the 64 bit configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -32,3 +35,10 @@ PRODUCT_PACKAGES += \
 # SELinux file contexts
 PRODUCT_COPY_FILES +=
     $(LOCAL_PATH)/ramdisk/file_contexts.bin:root/file_contexts.bin
+
+## Device identifier. This must come after all inclusions
+PRODUCT_NAME := omni_a7y17lteskt
+PRODUCT_DEVICE := a7y17lteskt
+PRODUCT_BRAND := samsung
+PRODUCT_MODEL := SM-A720S
+PRODUCT_MANUFACTURER := samsung

@@ -36,8 +36,8 @@ BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --board SRPQB08A000RU --dt $(LOCAL_PATH)/dt.img
 TARGET_USES_UNCOMPRESSED_KERNEL := true
-TARGET_PREBUILT_KERNEL := $(DEVICE_TREE)/kernel
-TARGET_PREBUILT_DTB := $(DEVICE_TREE)/dt.img
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
+TARGET_PREBUILT_DTB := $(LOCAL_PATH)/dt.img
 
 # Partitions | You can examine this by cat /cache/recovery/last_log (Only for root user).
 # If you didn't root your phone, just type cat /proc/partitions. And then, multiple 1024 on the blocks.
@@ -94,7 +94,7 @@ TW_INCLUDE_CRYPTO := true
 #TWRP_EVENT_LOGGING := true
 
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/13600000.usb/13600000.dwc3/gadget/lun%d/file"
-TARGET_SYSTEM_PROP := device/samsung/a7y17lteskt/system.prop
+TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # Color fix
 TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
