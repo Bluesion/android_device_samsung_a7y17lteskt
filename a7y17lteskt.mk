@@ -1,4 +1,5 @@
-# Copyright (C) 2016 The Android Open Source Project
+#
+# Copyright (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,11 +12,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-ifneq ($(filter a7y17lteskt,$(TARGET_DEVICE)),)
+LOCAL_PATH := device/samsung/a7y17lteskt
 
-LOCAL_PATH := $(call my-dir)
+# Common Overlays
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-include $(call all-makefiles-under,$(LOCAL_PATH))
+# Ramdisk
+PRODUCT_PACKAGES += \
+    fstab.samsungexynos7880 \
+    ueventd.samsungexynos7880.rc
 
-endif
+# Offmode charger
+PRODUCT_PACKAGES += \
+    charger_res_images \
+    charger
+
+# SELinux file contexts
+PRODUCT_COPY_FILES +=
+    $(LOCAL_PATH)/ramdisk/file_contexts.bin:root/file_contexts.bin
